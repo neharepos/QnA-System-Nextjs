@@ -24,7 +24,7 @@ export default async function createQuestionCollection(){
         databases.createStringAttribute(db, questionCollection,
         "authorId", 50, true),
         databases.createStringAttribute(db, questionCollection,
-        "tags", 50, true, undefined, true),\
+        "tags", 50, true, undefined, true),
         databases.createStringAttribute(db, questionCollection,
         "attachmentId", 50, false),
     ]);
@@ -33,41 +33,37 @@ export default async function createQuestionCollection(){
 
 
     // create indexes
-    // await Promise.all([
-    //     databases.createIndex(
-    //         db,
-    //         questionCollection,
-    //         "title",
-    //         IndexType.Fulltext,
-    //         ["title"],
-    //         ['asc']
-    //     ),
+    await Promise.all([
+        databases.createIndex(
+            db,
+            questionCollection,
+            "title",
+            IndexType.Fulltext,
+            ["title"]
+        ),
 
-    //     databases.createIndex(
-    //         db,
-    //         questionCollection,
-    //         "content",
-    //         IndexType.Fulltext,
-    //         ["content"],
-    //         ['asc']
-    //     ),
-    //         databases.createIndex(  
-    //         db,
-    //         questionCollection,
-    //         "authorId",             
-    //         IndexType.Key,
-    //         ["authorId"],
-    //         ['asc']
-    //     ),
-    //         databases.createIndex(
-    //         db,
-    //         questionCollection,         
-    //         "tags",             
-    //         IndexType.Key,
-    //         ["tags"],
-    //         ['asc']
-    //     ),
+        databases.createIndex(
+            db,
+            questionCollection,
+            "content",
+            IndexType.Fulltext,
+            ["content"],
+        ),
+            databases.createIndex(  
+            db,
+            questionCollection,
+            "authorId",             
+            IndexType.Key,
+            ["authorId"]
+        ),
+            databases.createIndex(
+            db,
+            questionCollection,         
+            "tags",             
+            IndexType.Key,
+            ["tags"]
+        ),
 
-    // ])
+    ])
 }
 
